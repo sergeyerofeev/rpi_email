@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  app:
+    image: sergeydevelop/rpi_email:1
+    container_name: checker_email
+    privileged: true
+    env_file:
+      - app.env
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy 
+
+  db:
+    image: postgres:14.4-alpine
+    container_name: db
+    ports:
+      - 5432:5432
+    env_file:
+      - db.env
+    restart: unless-stopped
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - db_vol:/var/lib/postgresql/data/
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_vol:

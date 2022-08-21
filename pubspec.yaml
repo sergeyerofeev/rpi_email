@@ -1,0 +1,14 @@
+name: rpi_email
+description: Приложение для уведомления о входящих письмах
+version: 1.0.0
+
+environment:
+  sdk: '>=2.17.6 <3.0.0'
+
+dependencies:
+  dart_periphery: ^0.9.1
+  enough_mail: ^2.1.1
+  postgres: ^2.4.6
+
+dev_dependencies:
+  lints: ^2.0.0

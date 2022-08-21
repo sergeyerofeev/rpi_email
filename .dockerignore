@@ -1,0 +1,20 @@
+# игнорировать следующие файлы и каталоги 
+.dockerignore
+Dockerfile
+docker-compose.yaml
+init.sql
+db.env
+app.env
+
+build/
+.dart_tool/
+
+.git/
+.github/
+.gitignore
+
+.packages
+analysis_options.yaml
+LICENSE
+CHANGELOG.md
+README.md
